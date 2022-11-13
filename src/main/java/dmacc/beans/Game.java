@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Movie class
+ * Game class
  */
-public class Movie {
-	// Movie details
+public class Game {
+	// Game details
 	String title;
 	String yearReleased;
-	String rating;
+	String esrbRating;
 	List<String> availOn;
 
 	// Store details
@@ -24,17 +24,17 @@ public class Movie {
 	// TODO: add rentPrice
 
 	// Default no-args constructor
-	public Movie() {
+	public Game() {
 		this.availOn = new ArrayList<String>();
 	}
 
 	// Main constructor
-	public Movie(String title, String yearReleased, String rating, List<String> availOn, int copies) {
+	public Game(String title, String yearReleased, String esrbRating, List<String> availOn, int copies) {
 		// TODO: input validation
 		super();
 		this.title = title;
 		this.yearReleased = yearReleased;
-		this.rating = rating;
+		this.esrbRating = esrbRating;
 		this.copies = copies;
 		this.availOn = availOn;
 		if (this.copies > 0)
@@ -52,13 +52,13 @@ public class Movie {
 			return false;
 	}
 
-	// return a copy
+	// Return game
 	// could be replaced with addCopies()
-	public void returnMovie() {
+	public void returnGame() {
 		this.copies++;
 	}
 
-	// add new copies
+	// Add new copies
 	public void addCopies(int copiesToAdd) {
 		this.copies += copiesToAdd;
 	}
@@ -79,12 +79,12 @@ public class Movie {
 		this.yearReleased = yearReleased;
 	}
 
-	public String getRating() {
-		return rating;
+	public String getEsrbRating() {
+		return esrbRating;
 	}
 
-	public void setRating(String rating) {
-		this.rating = rating;
+	public void setEsrbRating(String esrbRating) {
+		this.esrbRating = esrbRating;
 	}
 
 	public int getCopies() {
@@ -113,7 +113,7 @@ public class Movie {
 
 	@Override
 	public String toString() {
-		return "Movie [title=" + title + ", yearReleased=" + yearReleased + ", rating=" + rating + ", availOn="
+		return "Game [title=" + title + ", yearReleased=" + yearReleased + ", esrbRating=" + esrbRating + ", availOn="
 				+ availOn.toString() + ", copies=" + copies + ", available=" + available + "]";
 	}
 
