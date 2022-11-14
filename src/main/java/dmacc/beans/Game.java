@@ -8,14 +8,24 @@ package dmacc.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Game class
  */
+@Entity
 public class Game {
 	// Game details
+	@Id
+	@GeneratedValue
+	int ID;
 	String title;
 	String yearReleased;
 	String esrbRating;
+	@ElementCollection(targetClass=String.class)
 	List<String> availOn;
 
 	// Store details
