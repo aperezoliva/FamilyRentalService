@@ -3,7 +3,7 @@
  * CIS175 - Fall 2021
  * Nov 12, 2022
  */
-package controller;
+package dmacc.controller;
 
 import java.util.ArrayList;
 import java.util.List;

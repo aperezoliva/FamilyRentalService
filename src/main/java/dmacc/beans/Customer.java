@@ -8,12 +8,20 @@ package dmacc.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Customer class
  */
+@Entity
 public class Customer {
 	// TODO: input validation
 	// Customer details
+	@Id
+	@GeneratedValue
 	int ID;
 	String fName;
 	String lName;
@@ -21,7 +29,9 @@ public class Customer {
 	String address; // Maybe replace with a separate address class?
 
 	// Store details
+	@ElementCollection(targetClass = Movie.class)
 	List<Movie> moviesRented;
+	@ElementCollection(targetClass = Game.class)
 	List<Game> gamesRented;
 	double amountDue;
 	// TODO: incorporate rent price from game and movie
