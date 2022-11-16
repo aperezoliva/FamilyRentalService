@@ -4,7 +4,9 @@
 <title>Insert new customer</title>
 </head>
 <body>
-	<form th:object="${newCustomer}" th:action="@{/updateCustomer/{ID}(ID=${newCustomer.ID})}" method='POST'>
+	<form th:object="${newCustomer}"
+		th:action="@{/updateCustomer/{ID}(ID=${newCustomer.ID})}"
+		method='POST'>
 		<!-- Customer first name -->
 		Customer First Name: <input name="fName" size="20" th:field="*{fName}">
 		<br />
@@ -21,7 +23,7 @@
 		<input name="submit" type="submit" value="submit" />
 	</form>
 	<!-- View all link -->
-	<a href="viewAll">View all customers</a>
+	<a href="viewAllCustomers">View all customers</a>
 	<a href="../">Home</a>
 
 </body>

@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View all movies</title>
+</head>
+<body>
+	<form>
+		<table>
+			<tr th:each="currentMovie : ${movies}">
+				<td th:text="${currentMovie.ID}">/>
+				<td th:text="${currentMovie.title}" />
+				<td th:text="${currentMovie.yearReleased}" />
+				<td th:text="${currentMovie.rating}" />
+				<!-- Edit button -->
+				<td><a th:href="@{/editMovie/{ID}(ID=${currentMovie.ID})}">Edit</a></td>
+				<!-- Delete button -->
+				<td><a th:href="@{/deleteMovie/{ID}(ID=${currentMovie.ID})}">Delete</a></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

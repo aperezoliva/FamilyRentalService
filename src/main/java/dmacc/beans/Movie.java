@@ -5,10 +5,6 @@
  */
 package dmacc.beans;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,12 +17,10 @@ public class Movie {
 	// Movie details
 	@Id
 	@GeneratedValue
-	int ID;
+	long ID;
 	String title;
 	String yearReleased;
 	String rating;
-	@ElementCollection(targetClass=String.class)
-	List<String> availOn;
 
 	// Store details
 	int copies;
@@ -35,18 +29,16 @@ public class Movie {
 
 	// Default no-args constructor
 	public Movie() {
-		this.availOn = new ArrayList<String>();
 	}
 
 	// Main constructor
-	public Movie(String title, String yearReleased, String rating, List<String> availOn, int copies) {
+	public Movie(String title, String yearReleased, String rating, int copies) {
 		// TODO: input validation
 		super();
 		this.title = title;
 		this.yearReleased = yearReleased;
 		this.rating = rating;
 		this.copies = copies;
-		this.availOn = availOn;
 		if (this.copies > 0)
 			this.available = true;
 		else
@@ -113,18 +105,18 @@ public class Movie {
 		this.available = available;
 	}
 
-	public List<String> getAvailOn() {
-		return availOn;
+	public long getID() {
+		return ID;
 	}
 
-	public void setAvailOn(List<String> availOn) {
-		this.availOn = availOn;
+	public void setID(long iD) {
+		ID = iD;
 	}
 
 	@Override
 	public String toString() {
-		return "Movie [title=" + title + ", yearReleased=" + yearReleased + ", rating=" + rating + ", availOn="
-				+ availOn.toString() + ", copies=" + copies + ", available=" + available + "]";
+		return "Movie [ID=" + ID + ", title=" + title + ", yearReleased=" + yearReleased + ", rating=" + rating
+				+ ", copies=" + copies + ", available=" + available + "]";
 	}
 
 }
