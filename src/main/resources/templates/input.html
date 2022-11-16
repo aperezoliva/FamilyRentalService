@@ -4,8 +4,7 @@
 <title>Insert new customer</title>
 </head>
 <body>
-	<form th:object="${newCustomer}" th:action="@{/inputCustomer}"
-		method='POST'>
+	<form th:object="${newCustomer}" th:action="@{/update/{ID}(ID=${newCustomer.ID})}" method='POST'>
 		<!-- Customer first name -->
 		Customer First Name: <input name="fName" size="20" th:field="*{fName}">
 		<br />
