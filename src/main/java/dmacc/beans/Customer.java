@@ -22,7 +22,7 @@ public class Customer {
 	// Customer details
 	@Id
 	@GeneratedValue
-	int ID;
+	long ID;
 	String fName;
 	String lName;
 	String dob; // Maybe replace with better date format?
@@ -87,11 +87,11 @@ public class Customer {
 			throw new Exception();
 	}
 
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
 
-	public void setID(int iD) {
+	public void setID(long iD) {
 		ID = iD;
 	}
 
