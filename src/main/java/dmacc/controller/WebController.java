@@ -26,7 +26,7 @@ public class WebController {
 	public String addNewCustomer(Model model) {
 		Customer c = new Customer();
 		model.addAttribute("newCustomer", c);
-		return "input";
+		return "inputCustomer";
 	}
 
 	// Create customer with actual data
@@ -37,31 +37,31 @@ public class WebController {
 	}
 
 	// View all
-	@GetMapping("/viewAll")
+	@GetMapping("/viewAllCustomers")
 	public String viewAllCustomers(Model model) {
 		if (repo.findAll().isEmpty())
 			return addNewCustomer(model);
 		model.addAttribute("customers", repo.findAll());
-		return "results";
+		return "resultsCustomer";
 	}
 
 	// Edit customer info
-	@GetMapping("/edit/{ID}")
-	public String showUpdateContact(@PathVariable("ID") long ID, Model model) {
+	@GetMapping("/editCustomer/{ID}")
+	public String showUpdateContactCustomer(@PathVariable("ID") long ID, Model model) {
 		Customer c = repo.findById(ID).orElse(null);
 		model.addAttribute("newCustomer", c);
-		return "input";
+		return "inputCustomer";
 	}
 
 	// Update customer
-	@PostMapping("/update/{ID}")
+	@PostMapping("/updateCustomer/{ID}")
 	public String reviseCustomer(Customer c, Model model) {
 		repo.save(c);
 		return viewAllCustomers(model);
 	}
 
 	// Delete customer
-	@GetMapping("/delete/{ID}")
+	@GetMapping("/deleteCustomer/{ID}")
 	public String deleteCustomer(@PathVariable("ID") long ID, Model model) {
 		Customer c = repo.findById(ID).orElse(null);
 		repo.delete(c);
