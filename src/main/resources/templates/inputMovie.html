@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:object="${newMovie}"
+		th:action="@{/updateMovie/{ID}(ID=${newMovie.ID})}" method='POST'>
+		<!-- Movie title -->
+		Movie Title: <input name="title" size="20" th:field="*{title}">
+		<br />
+		<!-- Movie year release -->
+		Year Released: <input name="yearReleased" size="20"
+			th:field="*{yearReleased}"> <br />
+		<!-- Movie rating -->
+		Movie Rating: <input name="rating" size="20" th:field="*{rating}">
+		<br />
+		<!-- Submit button -->
+		<input name="submit" type="submit" value="submit" />
+	</form>
+	<!-- view all -->
+	<a href="viewAllMovies">View all movies</a>
+	<!-- Home -->
+	<a href="../">Home</a>
+
+</body>
+</html>

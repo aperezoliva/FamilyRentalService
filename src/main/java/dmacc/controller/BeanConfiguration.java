@@ -18,9 +18,17 @@ import dmacc.beans.Movie;
 @Configuration
 public class BeanConfiguration {
 
+	// Customer bean
 	@Bean
 	public Customer customer() {
 		Customer bean = new Customer();
+		return bean;
+	}
+
+	// Movie bean
+	@Bean
+	public Movie movie() {
+		Movie bean = new Movie();
 		return bean;
 	}
 

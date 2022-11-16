@@ -13,9 +13,9 @@
 				<td th:text="${currentCustomer.dob}" />
 				<td th:text="${currentCustomer.address}" />
 				<!-- Edit button -->
-				<td><a th:href="@{/edit/{ID}(ID=${currentCustomer.ID})}">Edit</a></td>
+				<td><a th:href="@{/editCustomer/{ID}(ID=${currentCustomer.ID})}">Edit</a></td>
 				<!-- Delete button -->
-				<td><a th:href="@{/delete/{ID}(ID=${currentCustomer.ID})}">Delete</a></td>
+				<td><a th:href="@{/deleteCustomer/{ID}(ID=${currentCustomer.ID})}">Delete</a></td>
 			</tr>
 		</table>
 	</form>
