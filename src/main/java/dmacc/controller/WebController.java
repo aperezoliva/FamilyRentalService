@@ -107,6 +107,15 @@ public class WebController {
 		model.addAttribute("movies", repoMovie.findAll());
 		return "resultsMovie";
 	}
+	
+	// Shows rental dates -- differs from the one above because the web page below should just show movie titles + day it was rented
+	@GetMapping("/viewMovieRentals")
+	public String viewMovieRentals(Model model) {
+		if (repoMovie.findAll().isEmpty())
+			return addNewMovie(model);
+		model.addAttribute("movies", repoMovie.findAll());
+		return "rentalsMovie";
+	}
 
 	// Edit movie info
 	@GetMapping("/editMovie/{ID}")
@@ -158,7 +167,15 @@ public class WebController {
 		model.addAttribute("games", repoGame.findAll());
 		return "resultsGame";
 	}
-
+	
+	// Get game rentals
+	@GetMapping("/viewGameRentals")
+	public String viewGameRentals(Model model) {
+		if (repoMovie.findAll().isEmpty())
+			return addNewGame(model);
+		model.addAttribute("games", repoGame.findAll());
+		return "rentalsGame";
+	}
 	// Edit game info
 	@GetMapping("/editGame/{ID}")
 	public String showUpdateContactGame(@PathVariable("ID") long ID, Model model) {

@@ -5,6 +5,9 @@
  */
 package dmacc.beans;
 
+import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,13 +28,17 @@ public class Movie {
 	// Store details
 	int copies;
 	boolean available;
+	//For now rentalDate will show the current date, will change it later to show a specific date to avoid confusion (Example: 12/01/1965)
+	@Column(columnDefinition = "DATE")
+	LocalDate rentalDate;
 	// TODO: add rentPrice
 
 	// Default no-args constructor
 	public Movie() {
+		super();
+		this.rentalDate = LocalDate.now();
 	}
-
-	// Main constructor
+	
 	public Movie(String title, String yearReleased, String rating, int copies) {
 		// TODO: input validation
 		super();
@@ -42,8 +49,26 @@ public class Movie {
 		if (this.copies > 0)
 			this.available = true;
 		else
-			this.available = false;
+			this.available = false;	
+
 	}
+	
+	public Movie(long ID, String title, String yearReleased, String rating, int copies, LocalDate rentalDate) {
+		// TODO: input validation
+		this.ID = ID;
+		this.title = title;
+		this.yearReleased = yearReleased;
+		this.rating = rating;
+		this.copies = copies;
+		if (this.copies > 0)
+			this.available = true;
+		else
+			this.available = false;	
+	
+		this.rentalDate = rentalDate;
+	}
+
+	
 
 	// Check if movie can be rented then reduce copies
 	public boolean rent() {
@@ -113,10 +138,18 @@ public class Movie {
 		ID = iD;
 	}
 
+	public LocalDate getRentalDate() {
+		return rentalDate;
+	}
+
+	public void setRentalDate(LocalDate rentalDate) {
+		this.rentalDate = rentalDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Movie [ID=" + ID + ", title=" + title + ", yearReleased=" + yearReleased + ", rating=" + rating
-				+ ", copies=" + copies + ", available=" + available + "]";
+				+ ", copies=" + copies + ", available=" + available + ", rentalDate=" + rentalDate + "]";
 	}
 
 }

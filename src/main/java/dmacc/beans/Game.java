@@ -5,6 +5,9 @@
  */
 package dmacc.beans;
 
+import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,10 +28,15 @@ public class Game {
 	// Store details
 	int copies;
 	boolean available;
+	@Column(columnDefinition = "DATE")
+	LocalDate rentalDate;
 	// TODO: add rentPrice
 
 	// Default no-args constructor
 	public Game() {
+		super();
+		//For now rentalDate will show the current date, will change it later to show a specific date to avoid confusion (Example: 12/01/1965)
+		this.rentalDate = LocalDate.now();
 	}
 
 	// Main constructor
@@ -43,6 +51,21 @@ public class Game {
 			this.available = true;
 		else
 			this.available = false;
+	}
+	
+	public Game(String title, String yearReleased, String esrbRating, int copies, LocalDate rentalDate) {
+		// TODO: input validation
+		super();
+		this.title = title;
+		this.yearReleased = yearReleased;
+		this.esrbRating = esrbRating;
+		this.copies = copies;
+		if (this.copies > 0)
+			this.available = true;
+		else
+			this.available = false;
+		
+		this.rentalDate = rentalDate;
 	}
 
 	// Check if movie can be rented then reduce copies
@@ -113,10 +136,19 @@ public class Game {
 		ID = iD;
 	}
 
+	public LocalDate getRentalDate() {
+		return rentalDate;
+	}
+
+	public void setRentalDate(LocalDate rentalDate) {
+		this.rentalDate = rentalDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Game [ID=" + ID + ", title=" + title + ", yearReleased=" + yearReleased + ", esrbRating=" + esrbRating
-				+ ", copies=" + copies + ", available=" + available + "]";
+				+ ", copies=" + copies + ", available=" + available + ", rentalDate=" + rentalDate + "]";
 	}
+
 
 }
