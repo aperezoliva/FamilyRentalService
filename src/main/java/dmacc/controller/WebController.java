@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Customer;
+import dmacc.beans.Game;
 import dmacc.beans.Movie;
 import dmacc.repository.CustomerRepository;
+import dmacc.repository.GameRepository;
 import dmacc.repository.MovieRepository;
 
 @Controller
@@ -24,6 +26,8 @@ public class WebController {
 	CustomerRepository repoCustomer;
 	@Autowired
 	MovieRepository repoMovie;
+	@Autowired
+	GameRepository repoGame;
 
 	/* ================ */
 	/* !!! CUSTOMER !!! */
@@ -127,4 +131,54 @@ public class WebController {
 		return viewAllMovies(model);
 	}
 
+	/* ============ */
+	/* !!! GAME !!! */
+	/* ============ */
+
+	// Create game with model
+	@GetMapping("/inputGame")
+	public String addNewGame(Model model) {
+		Game g = new Game();
+		model.addAttribute("newGame", g);
+		return "inputGame";
+	}
+
+	// Create game with actual data
+	@PostMapping("/inputGame")
+	public String addNewGame(@ModelAttribute Game g, Model model) {
+		repoGame.save(g);
+		return viewAllGames(model);
+	}
+
+	// View all
+	@GetMapping("/viewAllGames")
+	public String viewAllGames(Model model) {
+		if (repoGame.findAll().isEmpty())
+			return addNewGame(model);
+		model.addAttribute("games", repoGame.findAll());
+		return "resultsGame";
+	}
+
+	// Edit game info
+	@GetMapping("/editGame/{ID}")
+	public String showUpdateContactGame(@PathVariable("ID") long ID, Model model) {
+		Game g = repoGame.findById(ID).orElse(null);
+		model.addAttribute("newGame", g);
+		return "inputGame";
+	}
+
+	// Update game
+	@PostMapping("/updateGame/{ID}")
+	public String reviseGame(Game g, Model model) {
+		repoGame.save(g);
+		return viewAllGames(model);
+	}
+
+	// Delete game
+	@GetMapping("/deleteGame/{ID}")
+	public String deleteGame(@PathVariable("ID") long ID, Model model) {
+		Game g = repoGame.findById(ID).orElse(null);
+		repoGame.delete(g);
+		return viewAllGames(model);
+	}
 }

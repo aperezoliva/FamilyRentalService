@@ -32,4 +32,11 @@ public class BeanConfiguration {
 		return bean;
 	}
 
+	// Game bean
+	@Bean
+	public Game game() {
+		Game bean = new Game();
+		return bean;
+	}
+
 }

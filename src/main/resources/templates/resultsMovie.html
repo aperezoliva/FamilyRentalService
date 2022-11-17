@@ -7,7 +7,7 @@
 	<form>
 		<table>
 			<tr th:each="currentMovie : ${movies}">
-				<td th:text="${currentMovie.ID}">/>
+				<td th:text="${currentMovie.ID}" />
 				<td th:text="${currentMovie.title}" />
 				<td th:text="${currentMovie.yearReleased}" />
 				<td th:text="${currentMovie.rating}" />
