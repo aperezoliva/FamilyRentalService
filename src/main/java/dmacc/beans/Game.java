@@ -5,10 +5,6 @@
  */
 package dmacc.beans;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,12 +17,10 @@ public class Game {
 	// Game details
 	@Id
 	@GeneratedValue
-	int ID;
+	long ID;
 	String title;
 	String yearReleased;
 	String esrbRating;
-	@ElementCollection(targetClass=String.class)
-	List<String> availOn;
 
 	// Store details
 	int copies;
@@ -35,18 +29,16 @@ public class Game {
 
 	// Default no-args constructor
 	public Game() {
-		this.availOn = new ArrayList<String>();
 	}
 
 	// Main constructor
-	public Game(String title, String yearReleased, String esrbRating, List<String> availOn, int copies) {
+	public Game(String title, String yearReleased, String esrbRating, int copies) {
 		// TODO: input validation
 		super();
 		this.title = title;
 		this.yearReleased = yearReleased;
 		this.esrbRating = esrbRating;
 		this.copies = copies;
-		this.availOn = availOn;
 		if (this.copies > 0)
 			this.available = true;
 		else
@@ -113,18 +105,18 @@ public class Game {
 		this.available = available;
 	}
 
-	public List<String> getAvailOn() {
-		return availOn;
+	public long getID() {
+		return ID;
 	}
 
-	public void setAvailOn(List<String> availOn) {
-		this.availOn = availOn;
+	public void setID(long iD) {
+		ID = iD;
 	}
 
 	@Override
 	public String toString() {
-		return "Game [title=" + title + ", yearReleased=" + yearReleased + ", esrbRating=" + esrbRating + ", availOn="
-				+ availOn.toString() + ", copies=" + copies + ", available=" + available + "]";
+		return "Game [ID=" + ID + ", title=" + title + ", yearReleased=" + yearReleased + ", esrbRating=" + esrbRating
+				+ ", copies=" + copies + ", available=" + available + "]";
 	}
 
 }
