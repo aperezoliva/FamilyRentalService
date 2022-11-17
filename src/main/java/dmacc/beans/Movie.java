@@ -31,6 +31,9 @@ public class Movie {
 	//For now rentalDate will show the current date, will change it later to show a specific date to avoid confusion (Example: 12/01/1965)
 	@Column(columnDefinition = "DATE")
 	LocalDate rentalDate;
+	
+	//Not sure how to implement this in relationship with the customer, will just leave it as is for now and worry about it the next week
+	boolean isRented;
 	// TODO: add rentPrice
 
 	// Default no-args constructor
@@ -144,6 +147,14 @@ public class Movie {
 
 	public void setRentalDate(LocalDate rentalDate) {
 		this.rentalDate = rentalDate;
+	}
+
+	public boolean isRented() {
+		return isRented;
+	}
+
+	public void setRented(boolean isRented) {
+		this.isRented = isRented;
 	}
 
 	@Override
