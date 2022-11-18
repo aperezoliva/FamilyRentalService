@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View movie rental dates</title>
+</head>
+<body>
+	<form>
+		<table>
+			<tr th:each="currentMovie : ${movies}">
+				<td th:text="${currentMovie.ID}" />
+				<td th:text="${currentMovie.title}" />
+				<td th:text="${currentMovie.rentalDate}" />
+			</tr>
+		</table>
+	</form>
+	<!-- Home -->
+	<a href="../">Home</a>
+</body>
+</html>

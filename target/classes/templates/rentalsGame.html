@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View all movies</title>
+</head>
+<body>
+	<form>
+		<table>
+			<tr th:each="currentGame : ${games}">
+				<td th:text="${currentGame.ID}" />
+				<td th:text="${currentGame.title}" />
+				<td th:text="${currentGame.rentalDate}"/>
+				
+			</tr>
+		</table>
+		<a href="sortGames">Sort List</a>
+	</form>
+	<!-- Home -->
+	<a href="../">Home</a>
+</body>
+</html>
