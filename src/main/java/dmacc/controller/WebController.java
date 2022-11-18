@@ -116,7 +116,14 @@ public class WebController {
 		model.addAttribute("movies", repoMovie.findAll());
 		return "rentalsMovie";
 	}
-
+	
+	//Sorts movies
+	@GetMapping("/sortMovies")
+	public String sortMovies(Model model) {
+		model.addAttribute("movies", repoMovie.findByOrderByRentalDateAsc());
+		return "rentalMoviesSorted";
+	}
+	
 	// Edit movie info
 	@GetMapping("/editMovie/{ID}")
 	public String showUpdateContactMovie(@PathVariable("ID") long ID, Model model) {
@@ -176,6 +183,14 @@ public class WebController {
 		model.addAttribute("games", repoGame.findAll());
 		return "rentalsGame";
 	}
+	
+	//Sorts Games
+	@GetMapping("/sortGames")
+	public String sortGames(Model model) {
+		model.addAttribute("games", repoGame.findByOrderByRentalDateAsc());
+		return "rentalGamesSorted";
+	}
+	
 	// Edit game info
 	@GetMapping("/editGame/{ID}")
 	public String showUpdateContactGame(@PathVariable("ID") long ID, Model model) {
