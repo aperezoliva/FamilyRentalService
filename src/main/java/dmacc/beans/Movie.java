@@ -24,15 +24,20 @@ public class Movie {
 	String title;
 	String yearReleased;
 	String rating;
+	String description;
+	// have to use full name here instead of abbreviating to desc as 'desc' is a
+	// reserved word and will crash
 
 	// Store details
 	int copies;
 	boolean available;
-	//For now rentalDate will show the current date, will change it later to show a specific date to avoid confusion (Example: 12/01/1965)
+	// For now rentalDate will show the current date, will change it later to show a
+	// specific date to avoid confusion (Example: 12/01/1965)
 	@Column(columnDefinition = "DATE")
 	LocalDate rentalDate;
-	
-	//Not sure how to implement this in relationship with the customer, will just leave it as is for now and worry about it the next week
+
+	// Not sure how to implement this in relationship with the customer, will just
+	// leave it as is for now and worry about it the next week
 	boolean isRented;
 	// TODO: add rentPrice
 
@@ -41,37 +46,38 @@ public class Movie {
 		super();
 		this.rentalDate = LocalDate.now();
 	}
-	
-	public Movie(String title, String yearReleased, String rating, int copies) {
+
+	public Movie(String title, String yearReleased, String rating, String description, int copies) {
 		// TODO: input validation
 		super();
 		this.title = title;
 		this.yearReleased = yearReleased;
 		this.rating = rating;
+		this.description = description;
 		this.copies = copies;
 		if (this.copies > 0)
 			this.available = true;
 		else
-			this.available = false;	
+			this.available = false;
 
 	}
-	
-	public Movie(long ID, String title, String yearReleased, String rating, int copies, LocalDate rentalDate) {
+
+	public Movie(long ID, String title, String yearReleased, String rating, String description, int copies,
+			LocalDate rentalDate) {
 		// TODO: input validation
 		this.ID = ID;
 		this.title = title;
 		this.yearReleased = yearReleased;
 		this.rating = rating;
+		this.description = description;
 		this.copies = copies;
 		if (this.copies > 0)
 			this.available = true;
 		else
-			this.available = false;	
-	
+			this.available = false;
+
 		this.rentalDate = rentalDate;
 	}
-
-	
 
 	// Check if movie can be rented then reduce copies
 	public boolean rent() {
@@ -157,10 +163,19 @@ public class Movie {
 		this.isRented = isRented;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
 		return "Movie [ID=" + ID + ", title=" + title + ", yearReleased=" + yearReleased + ", rating=" + rating
-				+ ", copies=" + copies + ", available=" + available + ", rentalDate=" + rentalDate + "]";
+				+ ", description=" + description + ", copies=" + copies + ", available=" + available + ", rentalDate="
+				+ rentalDate + ", isRented=" + isRented + "]";
 	}
 
 }
