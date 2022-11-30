@@ -24,50 +24,58 @@ public class Game {
 	String title;
 	String yearReleased;
 	String esrbRating;
+	String description;
+	// have to use full name here instead of abbreviating to desc as 'desc' is a
+	// reserved word and will crash
 
 	// Store details
 	int copies;
 	boolean available;
 	@Column(columnDefinition = "DATE")
 	LocalDate rentalDate;
-	
-	//Not sure how to implement this in relationship with the customer, will just leave it as is for now and worry about it the next week
+
+	// Not sure how to implement this in relationship with the customer, will just
+	// leave it as is for now and worry about it the next week
 	boolean isRented;
 	// TODO: add rentPrice
 
 	// Default no-args constructor
 	public Game() {
 		super();
-		//For now rentalDate will show the current date, will change it later to show a specific date to avoid confusion (Example: 12/01/1965)
+		// For now rentalDate will show the current date, will change it later to show a
+		// specific date to avoid confusion (Example: 12/01/1965)
 		this.rentalDate = LocalDate.now();
 	}
 
 	// Main constructor
-	public Game(String title, String yearReleased, String esrbRating, int copies) {
+	public Game(String title, String yearReleased, String esrbRating, String description, int copies) {
 		// TODO: input validation
 		super();
 		this.title = title;
 		this.yearReleased = yearReleased;
 		this.esrbRating = esrbRating;
 		this.copies = copies;
+		this.description = description;
 		if (this.copies > 0)
 			this.available = true;
 		else
 			this.available = false;
 	}
-	
-	public Game(String title, String yearReleased, String esrbRating, int copies, LocalDate rentalDate) {
+
+	public Game(String title, String yearReleased, String esrbRating, String description, int copies,
+			LocalDate rentalDate) {
 		// TODO: input validation
 		super();
 		this.title = title;
 		this.yearReleased = yearReleased;
 		this.esrbRating = esrbRating;
+		this.description = description;
 		this.copies = copies;
 		if (this.copies > 0)
 			this.available = true;
 		else
 			this.available = false;
-		
+
 		this.rentalDate = rentalDate;
 	}
 
@@ -146,7 +154,7 @@ public class Game {
 	public void setRentalDate(LocalDate rentalDate) {
 		this.rentalDate = rentalDate;
 	}
-	
+
 	public boolean isRented() {
 		return isRented;
 	}
@@ -155,11 +163,19 @@ public class Game {
 		this.isRented = isRented;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
 		return "Game [ID=" + ID + ", title=" + title + ", yearReleased=" + yearReleased + ", esrbRating=" + esrbRating
-				+ ", copies=" + copies + ", available=" + available + ", rentalDate=" + rentalDate + "]";
+				+ ", description=" + description + ", copies=" + copies + ", available=" + available + ", rentalDate="
+				+ rentalDate + ", isRented=" + isRented + "]";
 	}
-
 
 }
