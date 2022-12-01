@@ -8,9 +8,14 @@
 		<table>
 			<tr th:each="currentGame : ${games}">
 				<td th:text="${currentGame.ID}" />
+				<td th:p>, </th:p>
 				<td th:text="${currentGame.title}" />
+				<td th:p>, </th:p>
 				<td th:text="${currentGame.yearReleased}" />
+				<td th:p>, </th:p>
 				<td th:text="${currentGame.esrbRating}" />
+				<td th:p>, </th:p>
+				<td th:text="${currentGame.description}" />
 				<!-- Edit button -->
 				<td><a th:href="@{/editGame/{ID}(ID=${currentGame.ID})}">Edit</a></td>
 				<!-- Delete button -->

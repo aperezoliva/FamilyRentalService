@@ -7,13 +7,17 @@
 	<form th:object="${newGame}"
 		th:action="@{/updateGame/{ID}(ID=${newGame.ID})}" method='POST'>
 		<!-- Game title -->
-		Game Title: <input name="title" size="20" th:field="*{title}"><br />
+		Game Title: <input name="title" size="20" th:field="*{title}">
+		<br />
 		<!-- Game release year -->
 		Year Released: <input name="yearReleased" size="20"
 			th:field="*{yearReleased}"> <br />
 		<!-- Game ESRB rating -->
 		ESRB Rating: <input name="esrbRating" size="10"
-			th:field="*{esrbRating}"><br />
+			th:field="*{esrbRating}"> <br />
+		<!--  Game Description -->
+		Description: <input name="description" size="100"
+			th:field="*{description}"> <br />
 		<!-- Submit button -->
 		<input name="submit" type="submit" value="submit" />
 	</form>
