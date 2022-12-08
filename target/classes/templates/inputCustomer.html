@@ -2,11 +2,60 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert new customer</title>
+<script>
+	function validateForm() {
+		// validate data
+		let fName = document.forms["form"]["fName"].value;
+		let lName = document.forms["form"]["lName"].value;
+		let dob = document.forms["form"]["dob"].value;
+		let adr = document.forms["form"]["address"].value;
+		// check if fname blank
+		if (fName == "") {
+			alert("First Name must be filled out.");
+			return false;
+		}
+		// check if fname contains space
+		if (fName.includes(" ")) {
+			alert("First Name is invalid. Check for spaces.")
+			return false;
+		}
+		// check if lname blank
+		if (lName == "") {
+			alert("Last Name must be filled out.");
+			return false;
+		}
+		// check if lname contains space
+		if (lName.includes(" ")) {
+			alert("Last Name is invalid. Check for spaces.")
+			return false;
+		}
+		// check if dob blank
+		if (dob == "") {
+			alert("Date of Birth must be filled out.");
+			return false;
+		}
+		// date format
+		if (!dob.match(/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/)) {
+			alert("Date of Birth is invalid. Try formatting it to 00/00/0000");
+			return false;
+		}
+		// check if date blank
+		if (adr == "") {
+			alert("Address must be filled out.");
+			return false;
+		}
+	}
+</script>
 <style>
+@import
+	url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap')
+	;
 body {
 	padding: 25px;
 	background-color: #181818;
 	color: white;
+	text-shadow: 3px 3px black;
+	font-family: 'JetBrains Mono', monospace;
 }
 
 a:visited, a {
@@ -29,19 +78,15 @@ input {
 	font-size: 0.9em;
 }
 
-input {
-	font-size: 0.9em;
-}
-
 input::placeholder {
 	color: grey;
 }
 </style>
 </head>
 <body>
-	<form th:object="${newCustomer}"
+	<form name="form" th:object="${newCustomer}"
 		th:action="@{/updateCustomer/{ID}(ID=${newCustomer.ID})}"
-		method='POST'>
+		method='POST' onsubmit="return validateForm()">
 		<!-- Customer first name -->
 		Customer First Name: <input name="fName" size="20" th:field="*{fName}"
 			placeholder="John"> <br />

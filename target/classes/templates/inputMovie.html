@@ -2,11 +2,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	function validateForm() {
+		// validate data
+		let title = document.forms["form"]["title"].value;
+		let year = document.forms["form"]["yearReleased"].value;
+		let genre = document.forms["form"]["genre"].value;
+		let rate = document.forms["form"]["rating"].value;
+		let descr = document.forms["form"]["description"].value;
+
+		// check if title blank
+		if (title == "") {
+			alert("Title must be filled out.")
+			return false;
+		}
+		// check if year blank
+		if (year == "") {
+			alert("Release Year must be filled out.")
+			return false;
+		}
+		// year format
+		if (!year.match(/^[0-9]{4}$/)) {
+			alert("Release Year invalid. Try formatting it to 0000.")
+			return false;
+		}
+		if (year < 1888 || year > 2030) {
+			alert("Release Year invalid. Year must be between 1888 and 2030.")
+			return false;
+		}
+		// check genre blank
+		if (genre == "") {
+			alert("Genre must be filled out.")
+			return false;
+		}
+		// check rating blank
+		if (rate == "") {
+			alert("ESRB Rating must be filled out.")
+			return false;
+		}
+		if (descr == "") {
+			alert("Description must be filled out.")
+			return false;
+		}
+	}
+</script>
 <style>
+@import
+	url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap')
+	;
+
 body {
 	padding: 25px;
 	background-color: #181818;
 	color: white;
+	text-shadow: 3px 3px black;
+	font-family: 'JetBrains Mono', monospace;
 }
 
 a:visited, a {
@@ -29,30 +79,27 @@ input {
 	font-size: 0.9em;
 }
 
-input {
-	font-size: 0.9em;
-}
-
 input::placeholder {
 	color: grey;
 }
 </style>
 </head>
 <body>
-	<form th:object="${newMovie}"
-		th:action="@{/updateMovie/{ID}(ID=${newMovie.ID})}" method='POST'>
+	<form name="form" th:object="${newMovie}"
+		th:action="@{/updateMovie/{ID}(ID=${newMovie.ID})}" method='POST'
+		onsubmit="return validateForm()">
 		<!-- Movie title -->
 		Movie Title: <input name="title" size="20" th:field="*{title}"
 			placeholder="Shrek"> <br />
 		<!-- Movie year release -->
 		Year Released: <input name="yearReleased" size="20"
 			th:field="*{yearReleased}" placeholder="2001"> <br />
-		<!-- Movie rating -->
-		Movie Rating: <input name="rating" size="5" th:field="*{rating}" placeholder="PG">
-		<br />
 		<!-- Movie Genre -->
-		Movie Genre: <input name="genre" size="20" th:field="*{genre}" placeholder="Kids Fantasy">
-		<br />
+		Movie Genre: <input name="genre" size="20" th:field="*{genre}"
+			placeholder="Kids Fantasy"> <br />
+		<!-- Movie rating -->
+		Movie Rating: <input name="rating" size="5" th:field="*{rating}"
+			placeholder="PG"> <br />
 		<!-- Movie description -->
 		Description: <input name="description" size="50"
 			th:field="*{description}"
