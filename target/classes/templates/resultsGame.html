@@ -2,19 +2,45 @@
 <head>
 <meta charset="UTF-8">
 <title>View all movies</title>
+<style>
+body {
+	padding: 25px;
+	background-color: #181818;
+	color: white;
+}
+
+a:visited, a {
+	text-decoration: none;
+	color: orange;
+	font-size: 1.3em;
+}
+
+a:hover {
+	color: yellow;
+	font-size: 1.4em;
+}
+
+td a, td a:visited {
+	font-size: 1em;
+}
+
+td a:hover {
+	font-size: 1.1em;
+}
+</style>
 </head>
 <body>
 	<form>
 		<table>
 			<tr th:each="currentGame : ${games}">
 				<td th:text="${currentGame.ID}" />
-				<td th:p>, </th:p>
+				<td th:p>|</th:p>
 				<td th:text="${currentGame.title}" />
-				<td th:p>, </th:p>
+				<td th:p>|</th:p>
 				<td th:text="${currentGame.yearReleased}" />
-				<td th:p>, </th:p>
+				<td th:p>|</th:p>
 				<td th:text="${currentGame.esrbRating}" />
-				<td th:p>, </th:p>
+				<td th:p>|</th:p>
 				<td th:text="${currentGame.description}" />
 				<!-- Edit button -->
 				<td><a th:href="@{/editGame/{ID}(ID=${currentGame.ID})}">Edit</a></td>
@@ -23,6 +49,8 @@
 			</tr>
 		</table>
 	</form>
+	<!-- Home -->
+	<a href="../">Home</a>
 
 </body>
 </html>
