@@ -10,6 +10,7 @@
 		let genre = document.forms["form"]["genre"].value;
 		let rate = document.forms["form"]["rating"].value;
 		let descr = document.forms["form"]["description"].value;
+		let copies = document.forms["form"]["copies"].value;
 
 		// check if title blank
 		if (title == "") {
@@ -40,8 +41,14 @@
 			alert("ESRB Rating must be filled out.")
 			return false;
 		}
+		// check descr blank
 		if (descr == "") {
 			alert("Description must be filled out.")
+			return false;
+		}
+		// check copies
+		if (copies < 0 || copies > 9999 || copies == "" || !copies.match(/^[0-9]{1,4}$/)) {
+			alert("Invalid copies. Copies must be between 0 and 9999.")
 			return false;
 		}
 	}
@@ -105,6 +112,9 @@ input::placeholder {
 			th:field="*{description}"
 			placeholder="Once upon a time, in a far away swamp, there lived an ogre named Shrek.">
 		<br />
+		<!-- Movie Copies -->
+		Copies: <input name="copies" size="5" th:field="*{copies}"
+			placeholder="5"> <br />
 		<!-- Submit button -->
 		<input name="submit" type="submit" value="submit" />
 	</form>
