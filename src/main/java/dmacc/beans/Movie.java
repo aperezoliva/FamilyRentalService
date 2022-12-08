@@ -35,11 +35,10 @@ public class Movie {
 	// specific date to avoid confusion (Example: 12/01/1965)
 	@Column(columnDefinition = "DATE")
 	LocalDate rentalDate;
-
 	// Not sure how to implement this in relationship with the customer, will just
 	// leave it as is for now and worry about it the next week
 	boolean isRented;
-	// TODO: add rentPrice
+	double price;
 
 	// Default no-args constructor
 	public Movie() {
@@ -62,7 +61,7 @@ public class Movie {
 
 	}
 
-	public Movie(long ID, String title, String yearReleased, String rating, String description, int copies,
+	public Movie(long ID, String title, String yearReleased, String rating, String description, int copies, double price,
 			LocalDate rentalDate) {
 		// TODO: input validation
 		this.ID = ID;
@@ -75,7 +74,7 @@ public class Movie {
 			this.available = true;
 		else
 			this.available = false;
-
+		this.price = price;
 		this.rentalDate = rentalDate;
 	}
 
@@ -177,6 +176,14 @@ public class Movie {
 
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	@Override
