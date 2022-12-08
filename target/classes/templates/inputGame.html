@@ -2,30 +2,63 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert new game</title>
+<style>
+body {
+	padding: 25px;
+	background-color: #181818;
+	color: white;
+}
+
+a:visited, a {
+	text-decoration: none;
+	color: orange;
+	font-size: 1.3em;
+}
+
+a:hover {
+	color: yellow;
+	font-size: 1.4em;
+}
+
+form {
+	color: lightblue;
+	font-size: 1.5em;
+}
+
+input {
+	font-size: 0.9em;
+}
+
+input::placeholder {
+	color: grey;
+}
+</style>
 </head>
 <body>
 	<form th:object="${newGame}"
 		th:action="@{/updateGame/{ID}(ID=${newGame.ID})}" method='POST'>
 		<!-- Game title -->
-		Game Title: <input name="title" size="20" th:field="*{title}">
-		<br />
+		Game Title: <input name="title" size="20" th:field="*{title}"
+			placeholder="God of War 1"> <br />
 		<!-- Game release year -->
 		Year Released: <input name="yearReleased" size="20"
-			th:field="*{yearReleased}"> <br />
+			th:field="*{yearReleased}" placeholder="2005"> <br />
 		<!-- Game Genre -->
-		Game Genre: <input name="genre" size="20" th:field="*{genre}">
+		Game Genre: <input name="genre" size="20" th:field="*{genre}" placeholder="Fighter">
 		<br />
 		<!-- Game ESRB rating -->
-		ESRB Rating: <input name="esrbRating" size="10"
-			th:field="*{esrbRating}"> <br />
+		ESRB Rating: <input name="esrbRating" size="5"
+			th:field="*{esrbRating}" placeholder="R"> <br />
 		<!--  Game Description -->
-		Description: <input name="description" size="100"
-			th:field="*{description}"> <br />
+		Description: <input name="description" size="50"
+			th:field="*{description}"
+			placeholder="God of War is an action-adventure game."> <br />
 		<!-- Submit button -->
 		<input name="submit" type="submit" value="submit" />
 	</form>
 	<!-- view all -->
 	<a href="viewAllGames">View all games</a>
+	<br />
 	<!-- Home -->
 	<a href="../">Home</a>
 </body>

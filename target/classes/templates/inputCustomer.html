@@ -2,28 +2,65 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert new customer</title>
+<style>
+body {
+	padding: 25px;
+	background-color: #181818;
+	color: white;
+}
+
+a:visited, a {
+	text-decoration: none;
+	color: orange;
+	font-size: 1.3em;
+}
+
+a:hover {
+	color: yellow;
+	font-size: 1.4em;
+}
+
+form {
+	color: lightblue;
+	font-size: 1.5em;
+}
+
+input {
+	font-size: 0.9em;
+}
+
+input {
+	font-size: 0.9em;
+}
+
+input::placeholder {
+	color: grey;
+}
+</style>
 </head>
 <body>
 	<form th:object="${newCustomer}"
 		th:action="@{/updateCustomer/{ID}(ID=${newCustomer.ID})}"
 		method='POST'>
 		<!-- Customer first name -->
-		Customer First Name: <input name="fName" size="20" th:field="*{fName}">
-		<br />
+		Customer First Name: <input name="fName" size="20" th:field="*{fName}"
+			placeholder="John"> <br />
 		<!-- Customer last name -->
-		Customer Last Name: <input name="lName" size="20" th:field="*{lName}">
-		<br />
+		Customer Last Name: <input name="lName" size="20" th:field="*{lName}"
+			placeholder="Doe"> <br />
 		<!-- Customer Date of Birth -->
-		Customer Date of Birth: <input name="dob" size="20" th:field="*{dob}">
-		<br />
+		Customer Date of Birth: <input name="dob" size="20" th:field="*{dob}"
+			placeholder="11/05/1998"> <br />
 		<!-- Customer Address -->
 		Customer Address: <input name="address" size="30"
-			th:field="*{address}">
+			th:field="*{address}" placeholder="123 Nice Street WA 98230">
+		<br />
 		<!-- Submit button -->
 		<input name="submit" type="submit" value="submit" />
 	</form>
 	<!-- View all link -->
 	<a href="viewAllCustomers">View all customers</a>
+	<br />
 	<a href="../">Home</a>
 
 </body>

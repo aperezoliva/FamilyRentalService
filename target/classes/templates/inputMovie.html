@@ -2,30 +2,68 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+body {
+	padding: 25px;
+	background-color: #181818;
+	color: white;
+}
+
+a:visited, a {
+	text-decoration: none;
+	color: orange;
+	font-size: 1.3em;
+}
+
+a:hover {
+	color: yellow;
+	font-size: 1.4em;
+}
+
+form {
+	color: lightblue;
+	font-size: 1.5em;
+}
+
+input {
+	font-size: 0.9em;
+}
+
+input {
+	font-size: 0.9em;
+}
+
+input::placeholder {
+	color: grey;
+}
+</style>
 </head>
 <body>
 	<form th:object="${newMovie}"
 		th:action="@{/updateMovie/{ID}(ID=${newMovie.ID})}" method='POST'>
 		<!-- Movie title -->
-		Movie Title: <input name="title" size="20" th:field="*{title}">
-		<br />
+		Movie Title: <input name="title" size="20" th:field="*{title}"
+			placeholder="Shrek"> <br />
 		<!-- Movie year release -->
 		Year Released: <input name="yearReleased" size="20"
-			th:field="*{yearReleased}"> <br />
+			th:field="*{yearReleased}" placeholder="2001"> <br />
 		<!-- Movie rating -->
-		Movie Rating: <input name="rating" size="20" th:field="*{rating}">
+		Movie Rating: <input name="rating" size="5" th:field="*{rating}" placeholder="PG">
 		<br />
 		<!-- Movie Genre -->
-		Movie Genre: <input name="genre" size="20" th:field="*{genre}">
+		Movie Genre: <input name="genre" size="20" th:field="*{genre}" placeholder="Kids Fantasy">
 		<br />
 		<!-- Movie description -->
-		Description: <input name="description" size="100"
-			th:field="*{description}"> <br />
+		Description: <input name="description" size="50"
+			th:field="*{description}"
+			placeholder="Once upon a time, in a far away swamp, there lived an ogre named Shrek.">
+		<br />
 		<!-- Submit button -->
 		<input name="submit" type="submit" value="submit" />
 	</form>
 	<!-- view all -->
 	<a href="viewAllMovies">View all movies</a>
+	<br />
 	<!-- Home -->
 	<a href="../">Home</a>
 
