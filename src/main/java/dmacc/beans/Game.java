@@ -37,7 +37,7 @@ public class Game {
 	// Not sure how to implement this in relationship with the customer, will just
 	// leave it as is for now and worry about it the next week
 	boolean isRented;
-	// TODO: add rentPrice
+	double price;
 
 	// Default no-args constructor
 	public Game() {
@@ -62,7 +62,7 @@ public class Game {
 			this.available = false;
 	}
 
-	public Game(String title, String yearReleased, String esrbRating, String description, int copies,
+	public Game(String title, String yearReleased, String esrbRating, String description, int copies, double price,
 			LocalDate rentalDate) {
 		// TODO: input validation
 		super();
@@ -75,7 +75,7 @@ public class Game {
 			this.available = true;
 		else
 			this.available = false;
-
+		this.price = price;
 		this.rentalDate = rentalDate;
 	}
 
@@ -177,6 +177,14 @@ public class Game {
 
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	@Override

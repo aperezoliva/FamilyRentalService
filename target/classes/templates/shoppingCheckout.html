@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Checkout Info</title>
+</head>
+<body>
+	<form th:action="@{/shoppingCheckout}" method="get">
+		<fieldset>
+		<legend>Movies</legend>
+			<ul>
+				<li th:each="currentMovie : ${movies}">
+					<label th:for="${currentMovie}" th:text="${currentMovie.title}"></label>
+					<label th:for="${currentMovie}" th:text="${currentMovie.genre}"></label>
+					<label th:for="${currentMovie}" th:text="${currentMovie.rating}"></label>
+					<label th:for="${currentMovie}" th:text="${currentMovie.description}"></label>
+					<label th:for="${currentMovie}" th:text="${currentMovie.price}"></label>
+					<label th:for="${currentMovie}" th:text="${currentMovie.copies}"></label>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+		<legend>Games</legend>
+			<ul>
+				<li th:each="currentGame : ${games}">
+					<label th:for="${currentGame}" th:text="${currentGame.title}"></label>
+					<label th:for="${currentGame}" th:text="${currentGame.genre}"></label>
+					<label th:for="${currentGame}" th:text="${currentGame.esrbRating}"></label>
+					<label th:for="${currentGame}" th:text="${currentGame.description}"></label>
+					<label th:for="${currentGame}" th:text="${currentGame.price}"></label>
+					<label th:for="${currentGame}" th:text="${currentGame.copies}"></label>
+				</li>
+			</ul>
+		</fieldset>
+	</form>
+</body>
+</html>

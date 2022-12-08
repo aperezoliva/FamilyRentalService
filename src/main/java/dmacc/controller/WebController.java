@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import dmacc.beans.Customer;
 import dmacc.beans.Game;
@@ -212,5 +214,38 @@ public class WebController {
 		Game g = repoGame.findById(ID).orElse(null);
 		repoGame.delete(g);
 		return viewAllGames(model);
+	}
+	
+
+	/* ============ */
+	/* !!! SHOPPING CART !!! */
+	/* ============ */
+	
+	@RequestMapping(value = "/shoppingCart", method=RequestMethod.GET)
+	public String viewSelections(Model model) {
+		//Simple checks if repo is empty, if empty add the other repo, else just add both repos
+		//its simple enough that it should work lol
+		if (repoMovie.findAll().isEmpty())
+			if(repoGame.findAll().isEmpty())
+				return "inputMovie";
+			else
+				model.addAttribute("games", repoGame.findAll());
+		else if (repoGame.findAll().isEmpty())
+			if(repoMovie.findAll().isEmpty())
+				return "inputGame";
+			else
+				model.addAttribute("games", repoGame.findAll());
+		else
+			model.addAttribute("games", repoGame.findAll());
+			model.addAttribute("movies", repoMovie.findAll());
+		
+		return "shoppingCart";
+	}
+	
+	@RequestMapping(value = "/shoppingCheckout", method=RequestMethod.POST)
+	public String getSelections(@ModelAttribute(value="games") Game game, @ModelAttribute(value="movies") Movie movie, Model model) {
+		model.getAttribute("games");
+		model.getAttribute("movies");
+		return "shoppingCheckout";
 	}
 }
