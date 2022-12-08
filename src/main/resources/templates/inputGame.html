@@ -2,11 +2,57 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert new game</title>
+<script>
+	function validateForm() {
+		// validate data
+		let title = document.forms["form"]["title"].value;
+		let year = document.forms["form"]["yearReleased"].value;
+		let genre = document.forms["form"]["genre"].value;
+		let rate = document.forms["form"]["esrbRating"].value;
+		let descr = document.forms["form"]["description"].value;
+		// check if title blank
+		if (title == "") {
+			alert("Title must be filled out.")
+			return false;
+		}
+		// check if year blank
+		if (year == "") {
+			alert("Release Year must be filled out.")
+			return false;
+		}
+		// year format
+		if (!year.match(/^[0-9]{4}$/)) {
+			alert("Release Year invalid. Try formatting it to 0000.")
+			return false;
+		}
+		// check genre blank
+		if (genre == "") {
+			alert("Genre must be filled out.")
+			return false;
+		}
+		// check rating blank
+		if (rate == "") {
+			alert("ESRB Rating must be filled out.")
+			return false;
+		}
+		if (descr == "") {
+			alert("Description must be filled out.")
+			return false;
+		}
+
+	}
+</script>
 <style>
+@import
+	url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap')
+	;
+
 body {
 	padding: 25px;
 	background-color: #181818;
 	color: white;
+	text-shadow: 3px 3px black;
+	font-family: 'JetBrains Mono', monospace;
 }
 
 a:visited, a {
@@ -35,8 +81,9 @@ input::placeholder {
 </style>
 </head>
 <body>
-	<form th:object="${newGame}"
-		th:action="@{/updateGame/{ID}(ID=${newGame.ID})}" method='POST'>
+	<form name="form" th:object="${newGame}"
+		th:action="@{/updateGame/{ID}(ID=${newGame.ID})}" method='POST'
+		onsubmit="return validateForm()">
 		<!-- Game title -->
 		Game Title: <input name="title" size="20" th:field="*{title}"
 			placeholder="God of War 1"> <br />
@@ -44,8 +91,8 @@ input::placeholder {
 		Year Released: <input name="yearReleased" size="20"
 			th:field="*{yearReleased}" placeholder="2005"> <br />
 		<!-- Game Genre -->
-		Game Genre: <input name="genre" size="20" th:field="*{genre}" placeholder="Fighter">
-		<br />
+		Game Genre: <input name="genre" size="20" th:field="*{genre}"
+			placeholder="Fighter"> <br />
 		<!-- Game ESRB rating -->
 		ESRB Rating: <input name="esrbRating" size="5"
 			th:field="*{esrbRating}" placeholder="R"> <br />

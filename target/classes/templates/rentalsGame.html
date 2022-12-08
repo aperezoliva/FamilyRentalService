@@ -3,10 +3,16 @@
 <meta charset="UTF-8">
 <title>View all movies</title>
 <style>
+@import
+	url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap')
+	;
+
 body {
 	padding: 25px;
 	background-color: #181818;
 	color: white;
+	text-shadow: 3px 3px black;
+	font-family: 'JetBrains Mono', monospace;
 }
 
 a:visited, a {
@@ -27,7 +33,7 @@ a:hover {
 			<tr th:each="currentGame : ${games}">
 				<td th:text="${currentGame.ID}" />
 				<td th:text="${currentGame.title}" />
-				<td th:text="${currentGame.rentalDate}"/>
+				<td th:text="${currentGame.rentalDate}" />
 			</tr>
 		</table>
 		<a href="sortGames">Sort List</a>
