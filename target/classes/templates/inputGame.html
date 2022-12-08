@@ -10,6 +10,8 @@
 		let genre = document.forms["form"]["genre"].value;
 		let rate = document.forms["form"]["esrbRating"].value;
 		let descr = document.forms["form"]["description"].value;
+		let copies = document.forms["form"]["copies"].value;
+		
 		// check if title blank
 		if (title == "") {
 			alert("Title must be filled out.")
@@ -35,8 +37,19 @@
 			alert("ESRB Rating must be filled out.")
 			return false;
 		}
+		// check descr blank
 		if (descr == "") {
 			alert("Description must be filled out.")
+			return false;
+		}
+		// check copies
+		if (copies < 0 || copies > 9999 || copies == "") {
+			alert("Invalid copies. Copies must be between 0 and 9999.")
+			return false;
+		}
+		// check copies
+		if (copies < 0 || copies > 9999 || copies == "" || !copies.match(/^[0-9]{1,4}$/)) {
+			alert("Invalid copies. Copies must be between 0 and 9999.")
 			return false;
 		}
 
@@ -100,6 +113,9 @@ input::placeholder {
 		Description: <input name="description" size="50"
 			th:field="*{description}"
 			placeholder="God of War is an action-adventure game."> <br />
+		<!-- Game Copies -->
+		Copies: <input name="copies" size="5" th:field="*{copies}"
+			placeholder="5" value=""> <br />
 		<!-- Submit button -->
 		<input name="submit" type="submit" value="submit" />
 	</form>
