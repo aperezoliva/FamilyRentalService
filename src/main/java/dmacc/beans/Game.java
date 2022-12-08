@@ -27,7 +27,7 @@ public class Game {
 	String description;
 	// have to use full name here instead of abbreviating to desc as 'desc' is a
 	// reserved word and will crash
-
+	String genre;
 	// Store details
 	int copies;
 	boolean available;
@@ -171,11 +171,19 @@ public class Game {
 		this.description = description;
 	}
 
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
 	@Override
 	public String toString() {
 		return "Game [ID=" + ID + ", title=" + title + ", yearReleased=" + yearReleased + ", esrbRating=" + esrbRating
-				+ ", description=" + description + ", copies=" + copies + ", available=" + available + ", rentalDate="
-				+ rentalDate + ", isRented=" + isRented + "]";
+				+ ", description=" + description + ", genre=" + genre + ", copies=" + copies + ", available="
+				+ available + ", rentalDate=" + rentalDate + ", isRented=" + isRented + "]";
 	}
 
 }

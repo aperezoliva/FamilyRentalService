@@ -48,8 +48,11 @@ input::placeholder {
 		Year Released: <input name="yearReleased" size="20"
 			th:field="*{yearReleased}" placeholder="2001"> <br />
 		<!-- Movie rating -->
-		Movie Rating: <input name="rating" size="10" th:field="*{rating}"
-			placeholder="PG"> <br />
+		Movie Rating: <input name="rating" size="10" th:field="*{rating}" placeholder="R">
+		<br />
+		<!-- Movie Genre -->
+		Movie Genre: <input name="genre" size="20" th:field="*{genre}" placeholder="Kids Fantasy">
+		<br />
 		<!-- Movie description -->
 		Description: <input name="description" size="50"
 			th:field="*{description}"
