@@ -3,44 +3,78 @@
 <meta charset="UTF-8">
 <title>Rent Media</title>
 <style>
+@import
+	url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap')
+	;
+
 ul {
-  list-style-type: none;
+	list-style-type: none;
+}
+
+body {
+	padding: 25px;
+	background-color: #181818;
+	color: white;
+	text-shadow: 3px 3px black;
+	font-family: 'JetBrains Mono', monospace;
+}
+
+a:visited, a {
+	text-decoration: none;
+	color: orange;
+	font-size: 1.3em;
+}
+
+a:hover {
+	color: yellow;
+	font-size: 1.4em;
+}
+
+ul a, ul a:visited {
+	font-size: 1em;
+}
+
+ul a:hover {
+	font-size: 1.1em;
 }
 </style>
 </head>
 <body>
 	<form th:action="@{/shoppingCheckout}" method="post">
 		<fieldset>
-		<legend>Movies</legend>
+			<legend>Movies</legend>
 			<ul>
-				<li th:each="currentMovie : ${movies}">
-					<input type="radio" th:value="${currentMovie.ID}" />
-					<label th:for="${currentMovie}" th:text="${currentMovie.title}"></label>
-					<label th:for="${currentMovie}" th:text="${currentMovie.genre}"></label>
-					<label th:for="${currentMovie}" th:text="${currentMovie.rating}"></label>
-					<label th:for="${currentMovie}" th:text="${currentMovie.description}"></label>
-					<label th:for="${currentMovie}" th:text="${currentMovie.price}"></label>
-					<label th:for="${currentMovie}" th:text="${currentMovie.copies}"></label>
+				<li th:each="currentMovie : ${movies}"><input type="radio"
+					th:value="${currentMovie.ID}" /> <label th:for="${currentMovie}"
+					th:text="${currentMovie.title}"></label> <label
+					th:for="${currentMovie}" th:text="${currentMovie.genre}"></label> <label
+					th:for="${currentMovie}" th:text="${currentMovie.rating}"></label>
+					<label th:for="${currentMovie}"
+					th:text="${currentMovie.description}"></label> <label
+					th:for="${currentMovie}" th:text="${currentMovie.price}"></label> <label
+					th:for="${currentMovie}" th:text="${currentMovie.copies}"></label>
 				</li>
 			</ul>
 		</fieldset>
 		<fieldset>
-		<legend>Games</legend>
+			<legend>Games</legend>
 			<ul>
-				<li th:each="currentGame : ${games}">
-					<input type="radio" th:value="${currentGame.ID}" />
-					<label th:for="${currentGame}" th:text="${currentGame.title}"></label>
-					<label th:for="${currentGame}" th:text="${currentGame.genre}"></label>
-					<label th:for="${currentGame}" th:text="${currentGame.esrbRating}"></label>
+				<li th:each="currentGame : ${games}"><input type="radio"
+					th:value="${currentGame.ID}" /> <label th:for="${currentGame}"
+					th:text="${currentGame.title}"></label> <label
+					th:for="${currentGame}" th:text="${currentGame.genre}"></label> <label
+					th:for="${currentGame}" th:text="${currentGame.esrbRating}"></label>
 					<label th:for="${currentGame}" th:text="${currentGame.description}"></label>
 					<label th:for="${currentGame}" th:text="${currentGame.price}"></label>
 					<label th:for="${currentGame}" th:text="${currentGame.copies}"></label>
 				</li>
 			</ul>
 		</fieldset>
-		<p><input type="submit"/> <input type="reset" value="Reset Selection" /></p>
+		<p>
+			<input type="submit" /> <input type="reset" value="Reset Selection" />
+		</p>
 	</form>
 	<!-- Home -->
-	<a href="../">Home</a>	
+	<a href="../">Home</a>
 </body>
 </html>

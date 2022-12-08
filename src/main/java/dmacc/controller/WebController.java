@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import dmacc.beans.Customer;
 import dmacc.beans.Game;
@@ -217,11 +215,11 @@ public class WebController {
 	}
 	
 
-	/* ============ */
+	/* ===================== */
 	/* !!! SHOPPING CART !!! */
-	/* ============ */
+	/* ===================== */
 	
-	@RequestMapping(value = "/shoppingCart", method=RequestMethod.GET)
+	@GetMapping("/shoppingCart")
 	public String viewSelections(Model model) {
 		//Simple checks if repo is empty, if empty add the other repo, else just add both repos
 		//its simple enough that it should work lol
@@ -242,7 +240,7 @@ public class WebController {
 		return "shoppingCart";
 	}
 	
-	@RequestMapping(value = "/shoppingCheckout", method=RequestMethod.POST)
+	@PostMapping("/shoppingCheckout")
 	public String getSelections(@ModelAttribute(value="games") Game game, @ModelAttribute(value="movies") Movie movie, Model model) {
 		model.getAttribute("games");
 		model.getAttribute("movies");
