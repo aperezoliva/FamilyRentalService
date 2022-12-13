@@ -40,11 +40,11 @@ ul a:hover {
 </style>
 </head>
 <body>
-	<form th:action="@{/shoppingCheckout}" method="get">
+	<form action="#" th:action="@{/checkout}" method="get">
 		<fieldset>
 			<legend>Movies</legend>
 			<ul>
-				<li th:each="currentMovie : ${movies}"><label
+				<li th:each="currentMovie : ${selectedMovie}"><label
 					th:for="${currentMovie}" th:text="${currentMovie.title}"></label> <label
 					th:for="${currentMovie}" th:text="${currentMovie.genre}"></label> <label
 					th:for="${currentMovie}" th:text="${currentMovie.rating}"></label>
@@ -58,7 +58,7 @@ ul a:hover {
 		<fieldset>
 			<legend>Games</legend>
 			<ul>
-				<li th:each="currentGame : ${games}"><label
+				<li th:each="currentGame : ${selectedGame}"><label
 					th:for="${currentGame}" th:text="${currentGame.title}"></label> <label
 					th:for="${currentGame}" th:text="${currentGame.genre}"></label> <label
 					th:for="${currentGame}" th:text="${currentGame.esrbRating}"></label>
@@ -67,6 +67,10 @@ ul a:hover {
 					<label th:for="${currentGame}" th:text="${currentGame.copies}"></label>
 				</li>
 			</ul>
+		</fieldset>
+		<fieldset>
+		
+		
 		</fieldset>
 	</form>
 </body>

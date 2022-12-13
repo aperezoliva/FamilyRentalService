@@ -29,9 +29,9 @@ public class Customer {
 	String address; // Maybe replace with a separate address class?
 
 	// Store details
-	@ElementCollection(targetClass = Movie.class)
+	@ElementCollection
 	List<Movie> moviesRented;
-	@ElementCollection(targetClass = Game.class)
+	@ElementCollection
 	List<Game> gamesRented;
 	double amountDue;
 	// TODO: incorporate rent price from game and movie
@@ -44,15 +44,15 @@ public class Customer {
 	}
 
 	// Main constructor
-	public Customer(String fName, String lName, String dob, String address) {
+	public Customer(String fName, String lName, String dob, String address, ArrayList<Movie> moviesRented, ArrayList<Game> gamesRented) {
 		// TODO: input validation
 		super();
 		this.fName = fName;
 		this.lName = lName;
 		this.dob = dob;
 		this.address = address;
-		this.moviesRented = new ArrayList<Movie>();
-		this.gamesRented = new ArrayList<Game>();
+		this.moviesRented = moviesRented;
+		this.gamesRented = gamesRented;
 	}
 
 	// Add a movie to moviesRented list

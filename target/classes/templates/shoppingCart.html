@@ -40,11 +40,11 @@ ul a:hover {
 </style>
 </head>
 <body>
-	<form th:action="@{/shoppingCheckout}" method="post">
+	<form action="#" th:action="@{/checkout}"   method="post">
 		<fieldset>
 			<legend>Movies</legend>
 			<ul>
-				<li th:each="currentMovie : ${movies}"><input type="radio"
+				<li th:each="currentMovie : ${movies}"><input type="checkbox" name="selectedMovie" id="selectedMovie"
 					th:value="${currentMovie.ID}" /> <label th:for="${currentMovie}"
 					th:text="${currentMovie.title}"></label> <label
 					th:for="${currentMovie}" th:text="${currentMovie.genre}"></label> <label
@@ -56,10 +56,11 @@ ul a:hover {
 				</li>
 			</ul>
 		</fieldset>
+		
 		<fieldset>
 			<legend>Games</legend>
 			<ul>
-				<li th:each="currentGame : ${games}"><input type="radio"
+				<li th:each="currentGame : ${games}"><input type="checkbox" name="selectedGame"
 					th:value="${currentGame.ID}" /> <label th:for="${currentGame}"
 					th:text="${currentGame.title}"></label> <label
 					th:for="${currentGame}" th:text="${currentGame.genre}"></label> <label
@@ -69,9 +70,19 @@ ul a:hover {
 					<label th:for="${currentGame}" th:text="${currentGame.copies}"></label>
 				</li>
 			</ul>
+			
+		</fieldset>
+		<fieldset>
+			<legend>Customer</legend>
+			<ul>
+			<li th:each="currentCustomer : ${customers}"><input type="radio" name="customer" th:value="${currentCustomer.ID}"/>
+			<label th:for="${currentCustomer}" th:text="${currentCustomer.fName}"></label>
+			<label th:for="${currentCustomer}" th:text="${currentCustomer.lName}"></label>
+			</li>
+			</ul>
 		</fieldset>
 		<p>
-			<input type="submit" /> <input type="reset" value="Reset Selection" />
+			<input type="submit" value="Checkout"/> <input type="reset" value="Reset Selection" />
 		</p>
 	</form>
 	<!-- Home -->

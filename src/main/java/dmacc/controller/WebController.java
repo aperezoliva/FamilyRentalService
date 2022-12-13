@@ -5,6 +5,9 @@
  */
 package dmacc.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import dmacc.beans.Customer;
 import dmacc.beans.Game;
@@ -79,6 +85,16 @@ public class WebController {
 		repoCustomer.delete(c);
 		return viewAllCustomers(model);
 	}
+	
+	//Check Customer's Rentals
+	@GetMapping("/viewCustomerRentals")
+	public String viewCustomerRentals(Model model) {
+		if (repoCustomer.findAll().isEmpty())
+			return addNewCustomer(model);
+		
+		model.addAttribute("customers", repoCustomer.findAll());
+		return "customerRentals";
+	}
 
 	/* ============= */
 	/* !!! MOVIE !!! */
@@ -107,22 +123,7 @@ public class WebController {
 		model.addAttribute("movies", repoMovie.findAll());
 		return "resultsMovie";
 	}
-	
-	// Shows rental dates -- differs from the one above because the web page below should just show movie titles + day it was rented
-	@GetMapping("/viewMovieRentals")
-	public String viewMovieRentals(Model model) {
-		if (repoMovie.findAll().isEmpty())
-			return addNewMovie(model);
-		model.addAttribute("movies", repoMovie.findAll());
-		return "rentalsMovie";
-	}
-	
-	//Sorts movies
-	@GetMapping("/sortMovies")
-	public String sortMovies(Model model) {
-		model.addAttribute("movies", repoMovie.findByOrderByRentalDateAsc());
-		return "rentalMoviesSorted";
-	}
+
 	
 	// Edit movie info
 	@GetMapping("/editMovie/{ID}")
@@ -175,22 +176,6 @@ public class WebController {
 		return "resultsGame";
 	}
 	
-	// Get game rentals
-	@GetMapping("/viewGameRentals")
-	public String viewGameRentals(Model model) {
-		if (repoMovie.findAll().isEmpty())
-			return addNewGame(model);
-		model.addAttribute("games", repoGame.findAll());
-		return "rentalsGame";
-	}
-	
-	//Sorts Games
-	@GetMapping("/sortGames")
-	public String sortGames(Model model) {
-		model.addAttribute("games", repoGame.findByOrderByRentalDateAsc());
-		return "rentalGamesSorted";
-	}
-	
 	// Edit game info
 	@GetMapping("/editGame/{ID}")
 	public String showUpdateContactGame(@PathVariable("ID") long ID, Model model) {
@@ -219,7 +204,7 @@ public class WebController {
 	/* !!! SHOPPING CART !!! */
 	/* ===================== */
 	
-	@GetMapping("/shoppingCart")
+	@RequestMapping(value = "/cart", method=RequestMethod.GET)
 	public String viewSelections(Model model) {
 		//Simple checks if repo is empty, if empty add the other repo, else just add both repos
 		//its simple enough that it should work lol
@@ -236,14 +221,42 @@ public class WebController {
 		else
 			model.addAttribute("games", repoGame.findAll());
 			model.addAttribute("movies", repoMovie.findAll());
+			model.addAttribute("customers", repoCustomer.findAll());
+			
 		
 		return "shoppingCart";
 	}
 	
-	@PostMapping("/shoppingCheckout")
-	public String getSelections(@ModelAttribute(value="games") Game game, @ModelAttribute(value="movies") Movie movie, Model model) {
-		model.getAttribute("games");
-		model.getAttribute("movies");
+	// What the method does is essentially grabs the objects with the parameter value "selectedGame" then puts it into the array
+	// After that I ran a loop that put the objects in a list which then adds it to the customer
+	@RequestMapping(value = "/checkout", method=RequestMethod.POST)
+	public String getSelections(@ModelAttribute("customer") Customer c, @RequestParam(value = "selectedGame", required = false) Game[] g, @RequestParam(value = "selectedMovie", required = false) Movie[] m, Model model) {
+		List<Game> customerGameList = new ArrayList<>();
+		List<Movie> customerMovieList = new ArrayList<>();
+		model.addAttribute("selectedGame", customerGameList);
+		model.addAttribute("selectedMovie", customerMovieList);
+		
+		
+		
+		if (g != null) {
+			for (int i = 0; i < g.length; i++) {
+				customerGameList.add(g[i]);
+			}
+		}
+		
+		if (m != null) {
+			for (int i = 0; i < m.length; i++) {
+				customerMovieList.add(m[i]);
+			}
+		}
+		c.setGamesRented(null);
+		c.setMoviesRented(null);
+		c.setGamesRented(customerGameList);
+		c.setMoviesRented(customerMovieList);
+		
+		repoCustomer.save(c);
+		
+		
 		return "shoppingCheckout";
 	}
 }
