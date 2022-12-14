@@ -44,8 +44,7 @@ public class Customer {
 	}
 
 	// Main constructor
-	public Customer(String fName, String lName, String dob, String address, ArrayList<Movie> moviesRented,
-			ArrayList<Game> gamesRented) {
+	public Customer(String fName, String lName, String dob, String address, ArrayList<Movie> moviesRented, ArrayList<Game> gamesRented) {
 		// TODO: input validation
 		super();
 		this.fName = fName;
@@ -70,6 +69,8 @@ public class Customer {
 		// TODO: add rent price to amountDue;
 	}
 
+	
+	
 	// Return a movie
 	public void returnMovie(Movie movie) throws Exception {
 		// TODO: input validation

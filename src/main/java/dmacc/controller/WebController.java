@@ -231,26 +231,26 @@ public class WebController {
 	public String getSelections(@ModelAttribute("customer") Customer c,
 			@RequestParam(value = "selectedGame", required = false) Game[] g,
 			@RequestParam(value = "selectedMovie", required = false) Movie[] m, Model model) {
-		List<Game> customerGameList = new ArrayList<>();
-		List<Movie> customerMovieList = new ArrayList<>();
-		model.addAttribute("selectedGame", customerGameList);
-		model.addAttribute("selectedMovie", customerMovieList);
+		model.addAttribute("selectedGame", g);
+		model.addAttribute("selectedMovie", m);
 
 		if (g != null) {
 			for (int i = 0; i < g.length; i++) {
-				customerGameList.add(g[i]);
+				c.rentGame(g[i]);
+				g[i].rent();
+				g[i].changeRentDate();
+				repoGame.save(g[i]);
 			}
 		}
 
 		if (m != null) {
 			for (int i = 0; i < m.length; i++) {
-				customerMovieList.add(m[i]);
+				c.rentMovie(m[i]);
+				m[i].rent();
+				m[i].changeRentDate();
+				repoMovie.save(m[i]);
 			}
 		}
-		c.setGamesRented(null);
-		c.setMoviesRented(null);
-		c.setGamesRented(customerGameList);
-		c.setMoviesRented(customerMovieList);
 
 		repoCustomer.save(c);
 

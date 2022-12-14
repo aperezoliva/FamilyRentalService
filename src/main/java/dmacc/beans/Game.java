@@ -87,6 +87,12 @@ public class Game {
 		} else
 			return false;
 	}
+	
+	//Changes game rental date from seven days to now
+	//Only run when it's being rented
+	public void changeRentDate() {
+		this.rentalDate = LocalDate.now().plusDays(7);
+	}
 
 	// Return game
 	// could be replaced with addCopies()
