@@ -8,6 +8,16 @@
 	url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap')
 	;
 
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	padding: 2em;
+}
+
+.grid-item {
+	padding: 3em;
+}
+
 div {
 	text-align: center;
 	font-family: 'JetBrains Mono', monospace;
@@ -42,42 +52,52 @@ h1.main {
 <body>
 	<div>
 		<h1 class="main">Employee Menu</h1>
-		<!-- Customers menu -->
-		<h1>Customers</h1>
-		<h2>
-			<!-- view all customers -->
-			<a href="viewAllCustomers">View all customers</a> <br />
-			<!-- add a new customer -->
-			<a href="inputCustomer">Add a new customer</a>
-		</h2>
+		<div class="grid-container">
+			<div class="grid-item">
+				<!-- Customers menu -->
+				<h1>Customers</h1>
+				<h2>
+					<!-- view all customers -->
+					<a href="viewAllCustomers">View all customers</a> <br />
+					<!-- add a new customer -->
+					<a href="inputCustomer">Add a new customer</a>
+				</h2>
+			</div>
 
 
-		<!-- Movies menu-->
-		<h1>Movies</h1>
-		<h2>
-			<!-- view all movies -->
-			<a href="viewAllMovies">View all movies</a> <br />
-			<!-- add a new movie -->
-			<a href="inputMovie">Add a new movie</a> <br />
+			<div class="grid-item">
+				<!-- Movies menu-->
+				<h1>Movies</h1>
+				<h2>
+					<!-- view all movies -->
+					<a href="viewAllMovies">View all movies</a> <br />
+					<!-- add a new movie -->
+					<a href="inputMovie">Add a new movie</a> <br />
 
-		</h2>
+				</h2>
+			</div>
 
-		<!-- Games menu -->
-		<h1>Games</h1>
-		<h2>
-			<!-- view all games -->
-			<a href="viewAllGames">View all games</a> <br />
-			<!-- add a new game -->
-			<a href="inputGame">Add a new game</a> <br />
-		</h2>
-				
-		<h1>Rentals</h1>
-		<h2>
-			<a href="cart">Register Game Rental</a>
-		</h2>
-		<h2>
-			<a href="viewCustomerRentals">Manage Rentals</a>
-		</h2>
+			<div class="grid-item">
+				<!-- Games menu -->
+				<h1>Games</h1>
+				<h2>
+					<!-- view all games -->
+					<a href="viewAllGames">View all games</a> <br />
+					<!-- add a new game -->
+					<a href="inputGame">Add a new game</a> <br />
+				</h2>
+			</div>
+
+			<div class="grid-item">
+				<h1>Rentals</h1>
+				<h2>
+					<a href="cart">Register Game Rental</a>
+				</h2>
+				<h2>
+					<a href="viewCustomerRentals">Manage Rentals</a>
+				</h2>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

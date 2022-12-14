@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dmacc.beans.Customer;
@@ -85,13 +83,13 @@ public class WebController {
 		repoCustomer.delete(c);
 		return viewAllCustomers(model);
 	}
-	
-	//Check Customer's Rentals
+
+	// Check Customer's Rentals
 	@GetMapping("/viewCustomerRentals")
 	public String viewCustomerRentals(Model model) {
 		if (repoCustomer.findAll().isEmpty())
 			return addNewCustomer(model);
-		
+
 		model.addAttribute("customers", repoCustomer.findAll());
 		return "customerRentals";
 	}
@@ -124,7 +122,6 @@ public class WebController {
 		return "resultsMovie";
 	}
 
-	
 	// Edit movie info
 	@GetMapping("/editMovie/{ID}")
 	public String showUpdateContactMovie(@PathVariable("ID") long ID, Model model) {
@@ -175,7 +172,7 @@ public class WebController {
 		model.addAttribute("games", repoGame.findAll());
 		return "resultsGame";
 	}
-	
+
 	// Edit game info
 	@GetMapping("/editGame/{ID}")
 	public String showUpdateContactGame(@PathVariable("ID") long ID, Model model) {
@@ -198,52 +195,53 @@ public class WebController {
 		repoGame.delete(g);
 		return viewAllGames(model);
 	}
-	
 
 	/* ===================== */
 	/* !!! SHOPPING CART !!! */
 	/* ===================== */
-	
-	@RequestMapping(value = "/cart", method=RequestMethod.GET)
+
+	@GetMapping("/cart")
 	public String viewSelections(Model model) {
-		//Simple checks if repo is empty, if empty add the other repo, else just add both repos
-		//its simple enough that it should work lol
+		// Simple checks if repo is empty, if empty add the other repo, else just add
+		// both repos
+		// its simple enough that it should work lol
 		if (repoMovie.findAll().isEmpty())
-			if(repoGame.findAll().isEmpty())
+			if (repoGame.findAll().isEmpty())
 				return "inputMovie";
 			else
 				model.addAttribute("games", repoGame.findAll());
 		else if (repoGame.findAll().isEmpty())
-			if(repoMovie.findAll().isEmpty())
+			if (repoMovie.findAll().isEmpty())
 				return "inputGame";
 			else
 				model.addAttribute("games", repoGame.findAll());
 		else
 			model.addAttribute("games", repoGame.findAll());
-			model.addAttribute("movies", repoMovie.findAll());
-			model.addAttribute("customers", repoCustomer.findAll());
-			
-		
+		model.addAttribute("movies", repoMovie.findAll());
+		model.addAttribute("customers", repoCustomer.findAll());
+
 		return "shoppingCart";
 	}
-	
-	// What the method does is essentially grabs the objects with the parameter value "selectedGame" then puts it into the array
-	// After that I ran a loop that put the objects in a list which then adds it to the customer
-	@RequestMapping(value = "/checkout", method=RequestMethod.POST)
-	public String getSelections(@ModelAttribute("customer") Customer c, @RequestParam(value = "selectedGame", required = false) Game[] g, @RequestParam(value = "selectedMovie", required = false) Movie[] m, Model model) {
+
+	// What the method does is essentially grabs the objects with the parameter
+	// value "selectedGame" then puts it into the array
+	// After that I ran a loop that put the objects in a list which then adds it to
+	// the customer
+	@PostMapping("/checkout")
+	public String getSelections(@ModelAttribute("customer") Customer c,
+			@RequestParam(value = "selectedGame", required = false) Game[] g,
+			@RequestParam(value = "selectedMovie", required = false) Movie[] m, Model model) {
 		List<Game> customerGameList = new ArrayList<>();
 		List<Movie> customerMovieList = new ArrayList<>();
 		model.addAttribute("selectedGame", customerGameList);
 		model.addAttribute("selectedMovie", customerMovieList);
-		
-		
-		
+
 		if (g != null) {
 			for (int i = 0; i < g.length; i++) {
 				customerGameList.add(g[i]);
 			}
 		}
-		
+
 		if (m != null) {
 			for (int i = 0; i < m.length; i++) {
 				customerMovieList.add(m[i]);
@@ -253,10 +251,9 @@ public class WebController {
 		c.setMoviesRented(null);
 		c.setGamesRented(customerGameList);
 		c.setMoviesRented(customerMovieList);
-		
+
 		repoCustomer.save(c);
-		
-		
+
 		return "shoppingCheckout";
 	}
 }
