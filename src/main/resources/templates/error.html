@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Error page</title>
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap')
+	;
+
+div {
+	text-align: center;
+	font-family: 'JetBrains Mono', monospace;
+}
+
+body {
+	padding: 25px;
+	background-color: #181818;
+	color: white;
+	text-shadow: 3px 3px black;
+	font-family: 'JetBrains Mono', monospace;
+}
+
+a:visited, a {
+	text-decoration: none;
+	color: orange;
+	font-size: 1.3em;
+}
+
+a:hover {
+	color: yellow;
+	font-size: 1.4em;
+}
+</style>
+</head>
+<body>
+	<!-- CUSTOM ERROR PAGE / MAKE SURE 'server.error.whitelabel.enabled=false' IS SET IN application.properties -->
+	<div>
+		<h1>Oh No an error has occurred!</h1>
+		<br />
+		<h3>Possible causes for this are:</h3>
+		<p>Trying to delete a move or game that is rented.</p>
+		<p>Trying to add a movie or game that has an invalid field.</p>
+		<p>Trying to rent a movie or game that is already rented.</p>
+		<p>Or another generic error we somehow missed.</p>
+		<br /> <br />
+		<h3>We are sorry for this!</h3>
+		<!-- Home -->
+		<a href="../">Back Home</a>
+	</div>
+</body>
+</html>

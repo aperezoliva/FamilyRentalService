@@ -48,6 +48,8 @@ td a:hover {
 				<td th:text="${currentMovie.description}" />
 				<td th:p>|</th:p>
 				<td th:text="${currentMovie.copies}" />
+				<td th:p>|</th:p>
+				<td th:text="${currentMovie.price}" />
 				<!-- Edit button -->
 				<td><a th:href="@{/editMovie/{ID}(ID=${currentMovie.ID})}">Edit</a></td>
 				<!-- Delete button -->
