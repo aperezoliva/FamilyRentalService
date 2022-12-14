@@ -11,6 +11,7 @@
 		let rate = document.forms["form"]["esrbRating"].value;
 		let descr = document.forms["form"]["description"].value;
 		let copies = document.forms["form"]["copies"].value;
+		let price = document.forms["form"]["price"].value;
 		
 		// check if title blank
 		if (title == "") {
@@ -50,6 +51,11 @@
 		// check copies
 		if (copies < 0 || copies > 9999 || copies == "" || !copies.match(/^[0-9]{1,4}$/)) {
 			alert("Invalid copies. Copies must be between 0 and 9999.")
+			return false;
+		}
+		// check price
+		if (!(price > 0 && price < 100) || price == "") {
+			alert("Invalid price.")
 			return false;
 		}
 
@@ -116,6 +122,9 @@ input::placeholder {
 		<!-- Game Copies -->
 		Copies: <input name="copies" size="5" th:field="*{copies}"
 			placeholder="5" value=""> <br />
+		<!-- Game price -->
+		Rent Price: <input name="price" size="10" th:field="*{price}"
+			placeholder="14.99"> <br />
 		<!-- Submit button -->
 		<input name="submit" type="submit" value="submit" />
 	</form>

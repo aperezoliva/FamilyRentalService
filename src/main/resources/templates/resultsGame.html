@@ -52,6 +52,8 @@ td a:hover {
 				<td th:text="${currentGame.description}" />
 				<td th:p>|</th:p>
 				<td th:text="${currentGame.copies}"/>
+				<td th:p>|</th:p>
+				<td th:text="${currentGame.price}"/>
 				<!-- Edit button -->
 				<td><a th:href="@{/editGame/{ID}(ID=${currentGame.ID})}">Edit</a></td>
 				<!-- Delete button -->
