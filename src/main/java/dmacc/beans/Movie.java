@@ -192,10 +192,10 @@ public class Movie {
 	}
 
 	@Override
+	// used to display rented
 	public String toString() {
-		return "Movie [ID=" + ID + ", title=" + title + ", yearReleased=" + yearReleased + ", rating=" + rating
-				+ ", description=" + description + ", genre=" + genre + ", copies=" + copies + ", available="
-				+ available + ", rentalDate=" + rentalDate + ", isRented=" + isRented + "]";
+		return ID + " | " + title + "(" + yearReleased + ") Rated:" + rating + " Genre:" + genre + ". About:"
+				+ description;
 	}
 
 }
