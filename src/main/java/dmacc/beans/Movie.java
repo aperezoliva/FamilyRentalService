@@ -61,8 +61,8 @@ public class Movie {
 
 	}
 
-	public Movie(long ID, String title, String yearReleased, String rating, String description, int copies, double price,
-			LocalDate rentalDate) {
+	public Movie(long ID, String title, String yearReleased, String rating, String description, int copies,
+			double price, LocalDate rentalDate) {
 		// TODO: input validation
 		this.ID = ID;
 		this.title = title;
@@ -169,7 +169,7 @@ public class Movie {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public String getGenre() {
 		return genre;
 	}
@@ -177,7 +177,7 @@ public class Movie {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	
+
 	public double getPrice() {
 		return price;
 	}
