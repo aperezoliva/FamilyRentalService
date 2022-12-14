@@ -86,7 +86,12 @@ public class Movie {
 		} else
 			return false;
 	}
-
+	
+	//Changes movie rental date from seven days to now
+		//Only run when it's being rented
+	public void changeRentDate() {
+		this.rentalDate = LocalDate.now().plusDays(7);
+	}
 	// return a copy
 	// could be replaced with addCopies()
 	public void returnMovie() {
