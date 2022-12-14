@@ -188,10 +188,10 @@ public class Game {
 	}
 
 	@Override
+	// used to display rented
 	public String toString() {
-		return "Game [ID=" + ID + ", title=" + title + ", yearReleased=" + yearReleased + ", esrbRating=" + esrbRating
-				+ ", description=" + description + ", genre=" + genre + ", copies=" + copies + ", available="
-				+ available + ", rentalDate=" + rentalDate + ", isRented=" + isRented + "]";
+		return ID + " | " + title + "(" + yearReleased + ") Rated:" + esrbRating + " Genre:" + genre + ". About:"
+				+ description;
 	}
 
 }
